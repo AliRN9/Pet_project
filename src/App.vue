@@ -1,15 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <auth-component v-if="!isAuth" @handleAuth="handleAuth" />
+    <div v-else>
+      <p>Вы авторизованы</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AuthComponent from './components/AuthComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AuthComponent
+  },
+  data() {
+    return {
+      isAuth: false
+    }
+  },
+  methods: {
+    handleAuth() {
+      this.isAuth = true;
+    }
   }
 }
 </script>
